@@ -1,0 +1,22 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug enp0s3
+{% if setip_dhcp == true %}
+# iface enp0s3 inet dhcp
+iface {{ setip_interface }} inet dhcp
+{% else %}
+# iface enp0s3 inet static
+#     address 192.168.12.55/24
+#     gateway 192.168.12.2
+iface {{ setip_interface }} inet static
+    address {{ setip_IP }}/{{ setip_IPmask}}
+    gateway {{ setip_IPgw }}
+{% endif %}

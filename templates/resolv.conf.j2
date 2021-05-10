@@ -1,0 +1,15 @@
+# domain viskum-net.dk
+# search viskum-net.dk
+domain {{ setip_domain }}
+search {{ setip_domain }}
+{% if setip_dhcp == true %}
+# nameserver 192.168.12.55
+nameserver {{ setip_DNS1 }}
+{% else %}
+# nameserver 192.168.12.55
+# nameserver 8.8.8.8
+# nameserver 8.8.4.4
+nameserver {{ setip_DNS1 }}
+nameserver {{ setip_DNS2 }}
+nameserver {{ setip_DNS3 }}
+{% endif %}

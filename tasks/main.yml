@@ -1,0 +1,19 @@
+---
+
+- name: Set static DNS
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    mode: 644
+
+- name: Set static IP
+  template:
+    src: interfaces.j2
+    dest: /etc/network/interfaces
+    owner: root
+    group: root
+    mode: 644
+  notify: Restart network
+  
